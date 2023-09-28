@@ -16,7 +16,10 @@
 
       <link rel="stylesheet" href="/styles/index.css">
 
-      <title>🔥 {{content.title}}</title>
+      {% favicons 'src/favicon.png',
+      appleIconBgColor = theme.accentColor %}
+
+      <title>{{content.title}}</title>
    </head>
 
    <body>
