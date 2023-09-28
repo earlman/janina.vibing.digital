@@ -1,0 +1,204 @@
+---
+content:
+   backgroundImage: "/background.png"
+   title1: Janina
+   title2: Mangulabnan
+   headline: ""
+   links:
+      - 
+         icon: social-icons/tiktok_mono.svg
+         url: https://www.tiktok.com/@janina.elaine?lang=en
+      -
+         text1: tadhana
+         text2: ΚΦΛ
+         url: https://www.instagram.com/uiuckpl/
+theme:
+   titleColor: "#282422"
+   headlineColor: "#FFFFFF"
+   borderColor: "#473017"
+   iconColor: "#E4C08A"
+   footerColor: "#473017"
+developerSettings:
+   lyket: false
+   baseUrl: starter.vibing.digital
+   # fontCssFile: '/assets/fonts/fraunces/full.css'
+   # fontWoff2File: '/assets/fonts/fraunces/files/fraunces-latin-full-normal.woff2' # Optional, for preloading
+   linklyReferralLink: 'https://referral.foundations.design/jspe4ks'
+---
+
+{% extends "base.njk" %}
+{% block content %}
+   <aside class="horoscope">
+      {% include "horoscope.svg" %}
+   </aside>
+   <!-- header: for introductory content -->
+   <header>
+      <hgroup>
+         <h1 class="title1">{{content.title1}}</h1>
+         <h1 class="title2">{{content.title2}}</h1>
+         {# <p class="headline">{{content.headline}}</p> #}
+      </hgroup>
+   </header>
+   <main>
+      <section class="links">
+         {% for link in content.links %}
+            <nav class="link">
+               {% if link.text1 %}
+                  <a target="_blank" href="{{link.url}}" class="featured-link">
+                     <p class="text1">
+                        {{link.text1}}
+                     </p>
+                     <p class="text2">
+                        {{link.text2}}
+                     </p>
+                  </a>
+               {% else %}
+                  <a target="_blank" href="{{link.url}}">
+                     {% include link.icon %}
+                  </a>
+               {% endif %}
+            </nav>
+         {% endfor %}
+      </section>
+   </main>
+
+</body>
+
+<style>
+
+   /* DEV STYLE 
+  body > * {
+    border: 1px solid blue;
+  }*/
+
+   /* layout styles for the top-level sections: header, section.links*/
+   :root {
+      --color-border: {{theme.borderColor}};
+      --color-footer: {{theme.footerColor}};
+   }
+
+   aside {
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      height: 8%;
+      display: grid;
+      place-content: flex-end;
+      margin-right: var(--space-xs);
+   }
+
+   header {
+      position: absolute;
+      top: 9%;
+      left: 5%;
+      right: 5%;
+      height: 30%;
+      display: grid;
+      place-content: center;
+      border-top: 1px solid var(--color-border);
+      border-left: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      background-color: rgba(246, 243, 237, 0.98);
+      border-radius: 1.5rem 1.5rem 0 0;
+   }
+
+   main {
+      position: absolute;
+      top: 39%;
+      right: 5%;
+      left: 5%;
+      height: 55%;
+      display: grid;
+      place-content: center center;
+      background-color: rgba(246, 243, 237, 0.98);
+      border-bottom: 1px solid var(--color-border);
+      border-left: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      border-radius: 0 0 1.5rem 1.5rem;
+   }
+</style>
+
+<style>
+
+   /*styles for WITHIN the top-level sections: header, section.links*/
+
+   * {
+      font-family: "Playfair Display";
+   }
+
+   header hgroup {
+      width: max-content;
+      height: max-content;
+   }
+
+   h1 {
+      font-family: "Playfair Display";
+      text-align: center;
+      width: min-content;
+      color: {{theme.titleColor}};
+      margin: 0;
+      line-height: 1;
+   }
+
+   h1.title1 {
+      font-size: clamp(24px, 20lvw, 100px);
+   }
+
+   h1.title2 {
+      font-size: clamp(12px, 10lvw, 50px);
+      margin-left: var(--space-sm);
+   }
+
+   p.headline {
+      font-size: clamp(16px, 4lvw, 20px);
+      color: {{theme.headlineColor}};
+      text-align: right;
+      margin-top: -0.5rem;
+      margin-right: 0.5em;
+      letter-spacing: 0.09em;
+      opacity: 0.9;
+   }
+
+   section.links {
+      max-height: 48lvh;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      direction: rtl;
+      width: max-content;
+   }
+
+   section.links svg {
+      fill: {{theme.iconColor}};
+   }
+
+   .featured-link .text1 {
+      line-height: 1;
+      font-size: clamp(24px, 10lvw, 40px);
+      background: var(--gold-gradient, radial-gradient(153.03% 153.18% at 49.91% 215.24%, #473017 0%, #E4C08A 100%));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: -.6em;
+   }
+   .featured-link .text2 {
+      line-height: 1;
+      font-size: clamp(72px, 30lvw, 120px);
+      padding-right: var(--space-xs);
+      font-family: "Zen Old Mincho";
+      letter-spacing: -0.875rem;
+      background: var(--gold-gradient, radial-gradient(153.03% 153.18% at 49.91% 215.24%, #473017 0%, #E4C08A 100%));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+   }
+
+   aside.horoscope svg {
+      height: 100%;
+      width: auto;
+      opacity: 0.8;
+   }
+</style>
+
+{% endblock %}

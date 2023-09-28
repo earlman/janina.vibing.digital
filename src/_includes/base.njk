@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0,  interactive-widget=overlays-content">
+
+      {# <link href="{{developerSettings.fontCssFile}}" rel="stylesheet">
+      <link rel="preload" href="{{developerSettings.fontWoff2File}}" rel="stylesheet" as="font" type="font/woff2" crossorigin> #}
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Zen+Old+Mincho:wght@900&display=swap" rel="stylesheet">
+
+      <link rel="preload" href="{{backgroundImage}}" as="image"/>
+
+      <link rel="stylesheet" href="/styles/index.css">
+
+      <title>🔥 {{content.title}}</title>
+   </head>
+
+   <body>
+      {% block content %}{% endblock %}
+
+      <footer>
+         <div>
+            {% if lyket %}
+               <div
+            class="lyket"
+            data-lyket-type="like"
+            data-lyket-id="{{developerSettings.baseUrl}}"
+            data-lyket-namespace="lite"
+            data-lyket-template="twitter"
+            data-lyket-font-family="sans-serif"
+            data-lyket-color-text="rgba(255,255,255,.5)"
+            ></div>
+            {% endif %}
+         </div>
+         <div class="logo">
+            <a href="{{developerSettings.linklyReferralLink}}" target="_blank">
+               {% include "logo-var1.svg" %}
+            </a>
+         </div>
+      </footer>
+
+      <style>
+
+         /*STARTER LAYOUT*/
+         /* The following CSS is closely tied with the business specifications of LITE/STARTER. */
+         /*
+      Specifically: 
+        - STARTER supports a maximum width of 600px, based on the viewport size of the largest smartphones
+        - Any viewports larger than 600px will show a square website
+      */
+         :root {
+            --starter-max-width: 600px;
+         }
+
+         @media (prefers-color-scheme: dark) {
+            html {
+               background-color: black;
+            }
+         }
+
+         @media (prefers-color-scheme: light) {
+            html {
+               background-color: #ECEAEA;
+            }
+         }
+
+         html {
+            height: 100svh;
+            width: 100lvw;
+            display: grid;
+            place-content: center;
+            position: relative;
+         }
+
+         body {
+            height: 100svh;
+            width: 100lvw;
+            background-attachment: fixed;
+            background-image: url({{content.backgroundImage}});
+            background-position: 50% 0;
+            background-size: cover;
+            position: relative;
+         }
+
+         /* the value of media query below should be the same as --starter-max-width */
+         @media (min-width: 600px) {
+            body {
+               max-width: var(--starter-max-width);
+               max-height: var(--starter-max-width);
+               border-radius: 10px;
+               margin: auto;
+            }
+         }
+
+         /* */
+
+         footer {
+            position: absolute;
+            bottom: 0;
+            place-self: flex-end center;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            width: 100%;
+            justify-items: center;
+            align-items: center;
+         }
+
+         footer > *:first-child {
+            margin-left: var(--space-xs);
+            place-self: flex-start;
+         }
+
+         .logo {
+            width: 24px;
+            margin-bottom: var(--space-2xs);
+         }
+      </style>
+      {% if lyket %}
+
+         <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_b2e989b79fbbbe5f5c7b7d42869d3d"></script>
+
+      {% endif %}
+   </html>
